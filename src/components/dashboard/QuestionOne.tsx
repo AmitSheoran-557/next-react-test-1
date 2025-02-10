@@ -10,7 +10,7 @@ const QuestionOne = () => {
         }
     }];
     return (
-        <div>
+        <div className="text-center">
             <p>{Question[0].list.data[0].title} {Question[0].list.data[0].options[0]}</p>
         </div>
     )

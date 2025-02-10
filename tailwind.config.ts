@@ -13,6 +13,7 @@ export default {
         secondary: "#475467",
         blue: "#007BFF",
         lightBlack: "#14191C",
+        fadeBlack: "#2E2F37",
         lightGray: "#D0D5DD",
         lightWhite: "#FAFAFF",
       },
