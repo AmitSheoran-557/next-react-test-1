@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '3xl':  '1580px'
+      },
       colors: {
         primary: "#656566",
         secondary: "#475467",

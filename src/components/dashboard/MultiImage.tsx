@@ -18,7 +18,7 @@ const MultiImage: React.FC = () => {
   };
 
   return (
-    <div className=' py-20 text-white'>
+    <div className='py-20 text-white'>
       <label htmlFor="image" className='bg-black rounded-lg px-4 py-2 mb-4 mx-auto flex max-w-56 justify-center items-center text-white cursor-pointer text-3xl'>
         Upload Image
       </label>

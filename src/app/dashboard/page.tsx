@@ -1,11 +1,11 @@
 import Dashboard from '@/components/dashboard/Dashboard'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const page = () => {
   return (
-    <div>
+    <Suspense>
       <Dashboard/>
-    </div>
+    </Suspense>
   )
 }
 

@@ -50,32 +50,42 @@ const LyricsWeb: React.FC = () => {
                             <a href="/"><Image className='xl:mb-[138px] xl:pt-5 lg:mb-32 md:mb-28 mb-[90px] text-left flex justify-start items-start' src="/assets/images/png/Page-logo.png" alt="lyrics" width={163} height={31} /></a>
                             <h2 className='font-semibold text-3xl !leading-[194%] text-fadeBlack tracking-[1.22px]'>Welcome Back</h2>
                             <p className='ps-1.5 text-sm text-primary mb-[31px] !leading-[150%] font-normal'>Welcome back! Please enter your details.</p>
-                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
+                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col' noValidate>
                                 <p className='text-base text-lightBlack font-medium !leading-[142%] mb-1.5'>Email</p>
-                                <input {...register("email", { required: "Email is required", })} placeholder="Email" type="email" className="w-full px-[14px] py-[19.5px] border-lightGray bg-white custom-shadow placeholder:text-sm placeholder:text-primary text-primary border rounded-lg" />
-                                {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                                <input {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: "Invalid email format, please enter a valid email address.",
+                                    },
+                                    validate: {
+                                        hasAtSymbol: value => value.includes('@') || "Email must contain an '@' symbol",
+                                    }
+                                })} placeholder="Email" type="email"
+                                    className="w-full px-[14px] py-[19.5px] border-lightGray bg-white custom-shadow placeholder:text-sm placeholder:text-primary text-primary border rounded-lg" />
+                                {errors.email && <p className="text-red-500 mt-1 text-sm">{errors.email.message}</p>}
 
                                 <p className='text-base text-lightBlack font-medium !leading-[142%] mb-1.5 mt-[18px]'>Password</p>
                                 <input {...register("password", { required: "Password is required", validate: (value) => value.length >= 6 || "Password must be at least 6 characters" })} placeholder="••••••••" type="password" className="w-full px-[14px] py-[19.5px] border-lightGray bg-white custom-shadow placeholder:text-sm placeholder:text-primary text-primary border rounded-lg" />
-                                {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+                                {errors.password && <p className="text-red-500 mt-1 text-sm">{errors.password.message}</p>}
 
-                                <div className="flex flex-wrap justify-between max-sm:gap-[14px] lg:mb-6 mb-5 mt-[18px]">
+                                <div className="flex flex-wrap justify-between max-sm:gap-[14px] mt-[18px]">
                                     <div className="flex pe-5">
                                         <div className="relative">
                                             <input {...register("checkbox", { required: "You must agree to the terms" })} type="checkbox" className='mr-3 size-5 rounded-md cursor-pointer' />
-                                            {errors.checkbox && <p className="text-red-500 text-sm">{errors.checkbox.message}</p>}
                                         </div>
                                         <p className='text-secondary font-inter text-base'>Remember for 30 days</p>
                                     </div>
                                     <button className='text-blue text-base font-inter hover:underline'>Forgot password</button>
                                 </div>
+                                {errors.checkbox && <p className="text-red-500 text-sm">{errors.checkbox.message}</p>}
 
-                                <button type="submit" className="bg-blue-500 cursor-pointer text-sm lg:mb-1.5 mb-1 bg-lightBlack hover:bg-white transition-all ease-linear duration-300 hover:text-lightBlack text-white hover:border-lightGray border border-transparent px-4 py-2.5 rounded-[9px] !leading-[171.4%]">Sign In</button>
+                                <button type="submit" className="bg-blue-500  lg:mt-6 mt-5 cursor-pointer text-sm lg:mb-1.5 mb-1 bg-lightBlack hover:bg-white transition-all ease-linear duration-300 hover:text-lightBlack text-white hover:border-lightGray border border-transparent px-4 py-2.5 rounded-[9px] !leading-[171.4%]">Sign In</button>
                                 <button type="button" className='border flex lg:gap-2.5 gap-2 justify-center items-center border-lightGray rounded-[9px] text-sm text-lightBlack transition-all ease-linear duration-300 hover:border-black max-w-[456px] hover:bg-black hover:text-white w-full !leading-[155.4%] mb-[18px] py-2.5'>
                                     <Image className='pointer-events-none' src="/assets/images/svg/google-icon.svg" alt="google" width={20} height={20} />
                                     Sign in with Google
                                 </button>
-                                <div className="flex gap-2.5 mx-auto">
+                                <div className="flex gap-2.5 lg:mx-auto">
                                     <p className='text-secondary text-base font-inter'>Don’t have an account?</p>
                                     <button onClick={() => router.push("/dashboard")} className='text-blue text-base hover:underline font-inter'>Sign up</button>
                                 </div>
@@ -83,8 +93,8 @@ const LyricsWeb: React.FC = () => {
                         </div>
                     </div>
                     <div className="lg:w-6/12 w-full flex justify-center items-center lg:mt-0 mt-10">
-                        <Image className='xl:min-w-[759px] xl:translate-x-10 xl:min-h-[899px] w-full pointer-events-none max-lg:max-w-xl max-xl:max-w-2xl' src="/assets/images/png/lyrics-logo-img.png" alt="lyrics" width={759} height={899} />
-                    </div>
+                        <Image className='2xl:min-w-[759px] 3xl:translate-x-10 2xl:min-h-[899px] w-full pointer-events-none max-lg:max-w-xl max-xl:max-w-2xl' src="/assets/images/png/lyrics-logo-img.png" alt="lyrics" width={759} height={899} />
+                    </div>        
                 </div>
             </div>
         </div>
