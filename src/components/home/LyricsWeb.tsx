@@ -15,7 +15,11 @@ interface FormData {
 const LyricsWeb: React.FC = () => {
     const router = useRouter();
     const [Formdata, setFormdata] = useState<FormData[]>([]);
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors } } = useForm<FormData>();
 
     useEffect(() => {
         const savedData = JSON.parse(localStorage.getItem('Formdata') || '[]');
@@ -51,17 +55,10 @@ const LyricsWeb: React.FC = () => {
                             <h2 className='font-semibold text-3xl !leading-[194%] text-fadeBlack tracking-[1.22px]'>Welcome Back</h2>
                             <p className='ps-1.5 text-sm text-primary mb-[31px] !leading-[150%] font-normal'>Welcome back! Please enter your details.</p>
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col' noValidate>
+
                                 <p className='text-base text-lightBlack font-medium !leading-[142%] mb-1.5'>Email</p>
-                                <input {...register("email", {
-                                    required: "Email is required",
-                                    pattern: {
-                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                        message: "Invalid email format, please enter a valid email address.",
-                                    },
-                                    validate: {
-                                        hasAtSymbol: value => value.includes('@') || "Email must contain an '@' symbol",
-                                    }
-                                })} placeholder="Email" type="email"
+                                <input {...register("email", { required: "Email is required", pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format, please enter a valid email address.", }, })}
+                                    placeholder="Email" type="email"
                                     className="w-full px-[14px] py-[19.5px] border-lightGray bg-white custom-shadow placeholder:text-sm placeholder:text-primary text-primary border rounded-lg" />
                                 {errors.email && <p className="text-red-500 mt-1 text-sm">{errors.email.message}</p>}
 
@@ -71,10 +68,10 @@ const LyricsWeb: React.FC = () => {
 
                                 <div className="flex flex-wrap justify-between max-sm:gap-[14px] mt-[18px]">
                                     <div className="flex pe-5">
-                                        <div className="relative">
-                                            <input {...register("checkbox", { required: "You must agree to the terms" })} type="checkbox" className='mr-3 size-5 rounded-md cursor-pointer' />
-                                        </div>
-                                        <p className='text-secondary font-inter text-base'>Remember for 30 days</p>
+                                        <input id="checkbox" {...register("checkbox", { required: "You must agree to the terms" })} type="checkbox" className='mr-3 size-5 rounded-md cursor-pointer' />
+                                        <label htmlFor="checkbox" className='cursor-pointer'>
+                                            <p className='text-secondary font-inter text-base'>Remember for 30 days</p>
+                                        </label>
                                     </div>
                                     <button className='text-blue text-base font-inter hover:underline'>Forgot password</button>
                                 </div>
@@ -94,7 +91,7 @@ const LyricsWeb: React.FC = () => {
                     </div>
                     <div className="lg:w-6/12 w-full flex justify-center items-center lg:mt-0 mt-10">
                         <Image className='2xl:min-w-[759px] 3xl:translate-x-10 2xl:min-h-[899px] w-full pointer-events-none max-lg:max-w-xl max-xl:max-w-2xl' src="/assets/images/png/lyrics-logo-img.png" alt="lyrics" width={759} height={899} />
-                    </div>        
+                    </div>
                 </div>
             </div>
         </div>

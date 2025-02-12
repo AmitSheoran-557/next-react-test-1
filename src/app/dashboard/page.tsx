@@ -1,5 +1,5 @@
-import Dashboard from '@/components/dashboard/Dashboard'
 import React, { Suspense } from 'react'
+import Dashboard from './[button]/page'
 
 const page = () => {
   return (

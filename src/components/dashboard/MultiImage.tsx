@@ -34,6 +34,7 @@ const MultiImage: React.FC = () => {
         {images.map((item, index) => (
           <img className='max-w-80' key={index} src={item.url} alt={`selected-img-${index}`} />
         ))}
+        <button onClick={() => setImages([])} className={`bg-red-700 px-3 py-1 rounded-md max-h-11 ${images.length === 0 ? 'hidden' : ''}`}>remove all</button>
       </div>
     </div>
   );
